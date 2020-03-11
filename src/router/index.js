@@ -11,9 +11,6 @@ import orderConfirm from '../views/orderConfirm.vue'
 import orderPay from '../views/orderPay.vue'
 import Alipay from '../views/alipay.vue'
 
-
-
-
 Vue.use(VueRouter)
 
 const routes = [
