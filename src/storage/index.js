@@ -2,7 +2,7 @@
  * @Author: Chunlai 
  * @Date: 2020-03-11 22:30:10 
  * @Last Modified by: Chunlai
- * @Last Modified time: 2020-03-12 19:52:48
+ * @Last Modified time: 2020-03-12 20:06:53
  */
 const STORAGE_KEY = 'mall';
 export default{
@@ -35,6 +35,7 @@ export default{
     // 清空某一个值
     clear(key, module_name){
         let val = this.getStorage();
+        if (val == null) return;
         if (!val[module_name]) return;
         if (module_name) {
             delete val[module_name][key];
