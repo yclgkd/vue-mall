@@ -7,6 +7,7 @@
 </template>
 <script>
 // import jsonp from 'jsonp';
+// import storage from './storage/index';
 export default {
   name: "app",
   components: {
@@ -18,7 +19,7 @@ export default {
     }
   },
   mounted(){
-    
+
   }
 }
 </script>
