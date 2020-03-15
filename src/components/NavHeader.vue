@@ -319,6 +319,7 @@ export default {
             .children {
               height: 220px;
               opacity: 1;
+              background-color: #ffffff;
             }
           }
           .children {
