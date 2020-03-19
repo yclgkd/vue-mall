@@ -6,8 +6,7 @@
   </div>
 </template>
 <script>
-// import jsonp from 'jsonp';
-// import storage from './storage/index';
+
 export default {
   name: "app",
   components: {
@@ -15,11 +14,16 @@ export default {
   },
   data() {
     return {
-      
+
     }
   },
   mounted(){
-
+    
   }
 }
 </script>
+<style lang="scss">
+@import './assets/scss/reset.scss';
+@import './assets/scss/config.scss';
+@import './assets/scss/button.scss';
+</style>

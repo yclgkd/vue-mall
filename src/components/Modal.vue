@@ -17,8 +17,10 @@
         <slot name="body"></slot>
       </div>
       <div class="modal-footer">
-        <a href="javascript:;" class="btn">确定</a>
-        <a href="javascript:;" class="btn">取消</a>
+        <div class="btn-group">
+          <a href="javascript:;" class="btn">确定</a>
+          <a href="javascript:;" class="btn">取消</a>
+        </div>
       </div>
     </div>
   </div>
