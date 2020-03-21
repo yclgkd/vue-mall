@@ -10,7 +10,7 @@ import App from './App.vue'
 
 //mock开关
 const mock = false;
-if(mock){
+if (mock) {
   require('./mock/api');
 }
 // 根据前端的跨域方式来做调整 /a/b: /api/a/b => /a/b
@@ -19,13 +19,16 @@ axios.defaults.timeout = 8000;
 // 根据环境变量获取不同的请求地址
 // axios.defaults.baseURL = env.baseURL;
 // 接口错误拦截
-axios.interceptors.response.use(function(response){
+axios.interceptors.response.use(function (response) {
   let res = response.data;
-  if(res.status == 0){
+  let path = location.hash;
+  if (res.status == 0) {
     return res.data;
-  }else if (res.status == 10) {
-    window.location.href('/#/login');
-  }else{
+  } else if (res.status == 10) {
+    if (path !== '/#/index') {
+      window.location.href = '/#/login';
+    }
+  } else {
     alert(res.msg);
     return Promise.reject(res);
   }
