@@ -69,7 +69,7 @@ export default {
         })
         .then(res => {
           this.$cookie.set("userId", res.id, { expires: "1M" });
-          // Todo: 保存用户信息
+          this.$store.dispatch('saveUserName', res.username);
           this.$router.push("/index");
         });
     },

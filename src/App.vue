@@ -16,13 +16,13 @@ export default {
   },
   methods: {
     getUser() {
-      this.axios.get("/user").then(() => {
-        // Todo:保存到vuex里面
+      this.axios.get("/user").then((res) => {
+        this.$store.dispatch('saveUserName', res.username)
       });
     },
     getCart() {
-      this.axios.get("/carts/products/sum").then(() => {
-        // Todo:保存到vuex里面
+      this.axios.get("/carts/products/sum").then((res) => {
+        this.$store.dispatch('saveCartCount', res)
       });
     }
   }
