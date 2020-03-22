@@ -16,14 +16,13 @@ export default {
   },
   methods: {
     getUser() {
-      this.axios.get("/user").then((res) => {
-        console.log(res);
-        this.$store.dispatch('saveUserName', res.username);
+      this.axios.get("/user").then(res => {
+        this.$store.dispatch("saveUserName", res.username);
       });
     },
     getCart() {
-      this.axios.get("/carts/products/sum").then((res) => {
-        this.$store.dispatch('saveCartCount', res)
+      this.axios.get("/carts/products/sum").then(res => {
+        this.$store.dispatch("saveCartCount", res);
       });
     }
   }
