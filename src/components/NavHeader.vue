@@ -20,7 +20,8 @@
           <a href="javascript:;" v-if="!username" @click="login">登陆</a>
           <a href="javascript:;" v-if="username">我的订单</a>
           <a href="javascript:;" class="my-cart" @click="goToCart">
-            <span class="icon-cart"></span>购物车({{cartCount}})
+            <span class="icon-cart"></span>
+            购物车({{cartCount}})
           </a>
         </div>
       </div>
@@ -38,10 +39,7 @@
                 <li class="product" v-for="(item, index) in phoneList" :key="index">
                   <a :href="'/#/product/'+item.id" target="_blank">
                     <div class="pro-img">
-                      <img
-                        v-lazy="item.mainImage"
-                        :alt="item.subtitle"
-                      />
+                      <img v-lazy="item.mainImage" :alt="item.subtitle" />
                     </div>
                     <div class="pro-name">{{item.name}}</div>
                     <div class="pro-price">{{item.price | currency}}</div>
@@ -126,51 +124,52 @@
   </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 export default {
   name: "nav-header",
   data() {
     return {
       phoneList: []
-    }
+    };
   },
-  computed:{
+  computed: {
     // username(){
     //   return this.$store.state.username;
     // },
     // cartCount(){
     //   return this.$store.state.cartCount;
     // }
-    ...mapState(['username','cartCount'])
+    ...mapState(["username", "cartCount"])
   },
-  filters:{
-    currency(val){
-      if(!val) return '0.00';
-      return '￥'+val.toFixed(2)+'元';
+  filters: {
+    currency(val) {
+      if (!val) return "0.00";
+      return "￥" + val.toFixed(2) + "元";
     }
   },
-  mounted(){
+  mounted() {
     this.getProductList();
   },
   methods: {
-    login(){
-      this.$router.push('/login');
+    login() {
+      this.$router.push("/login");
     },
-    getProductList(){
-      this.axios.get('/products', {
-        params:{
-          categoryId: '100012',
-          pageSize: 6
-        }
-      })
-      .then(res => {
-        if(res.list.length>=6){
-          this.phoneList = res.list.slice(0, 6);
-        }
-      })
+    getProductList() {
+      this.axios
+        .get("/products", {
+          params: {
+            categoryId: "100012",
+            pageSize: 6
+          }
+        })
+        .then(res => {
+          if (res.list.length >= 6) {
+            this.phoneList = res.list.slice(0, 6);
+          }
+        });
     },
-    goToCart(){
-      this.$router.push('/cart');
+    goToCart() {
+      this.$router.push("/cart");
     }
   }
 };
@@ -210,30 +209,6 @@ export default {
       height: 112px;
       @include flex();
       position: relative;
-      .header-logo {
-        display: inline-block;
-        width: 55px;
-        height: 55px;
-        background-color: #ff6600;
-        a {
-          display: inline-block;
-          width: 110px;
-          height: 55px;
-          &:before {
-            content: "";
-            @include bgImg(55px, 55px, "/imgs/mi-logo.png");
-            transition: margin 0.2s;
-          }
-          &:after {
-            content: "";
-            @include bgImg(55px, 55px, "/imgs/mi-home.png");
-          }
-          &:hover:before {
-            margin-left: -55px;
-            transition: margin 0.2s;
-          }
-        }
-      }
       .header-menu {
         width: 643px;
         display: inline-block;
