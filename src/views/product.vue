@@ -1,14 +1,14 @@
 <template>
   <div class="product">
-    <product-param>
+    <product-param  v-bind:title="product.name">
       <template v-slot:buy>
-        <button class="btn">立即购买</button>
+        <button class="btn" @click="buy">立即购买</button>
       </template>
     </product-param>
     <div class="content">
       <div class="item-bg">
-        <h2>小米8</h2>
-        <h3>8周年旗舰版</h3>
+        <h2>{{product.name}}</h2>
+        <h3>{{product.subtitle}}</h3>
         <p>
           <a href id>全球首款双频 GP</a>
           <span>|</span>
@@ -21,7 +21,7 @@
         <div class="price">
           <span>
             ￥
-            <em>2599</em>
+            <em>{{product.price}}</em>
           </span>
         </div>
       </div>
@@ -59,10 +59,10 @@
           <br />更能AI 精准分析视频内容，15个场景智能匹配背景音效。
         </p>
         <div class="video-bg" @click="showSlide='slideDown'"></div>
-        <div class="video-box">
-          <div class="overlay" v-if="showSlide=='slideDown'"></div>
+        <div class="video-box" v-show="showSlide">
+          <div class="overlay"></div>
           <div class="video" v-bind:class="showSlide">
-            <span class="icon-close" @click="showSlide='slideUp'"></span>
+            <span class="icon-close" @click="closeVideo"></span>
             <video src="/imgs/product/video.mp4" muted autoplay controls="controls"></video>
           </div>
         </div>
@@ -82,7 +82,8 @@ export default {
   },
   data() {
     return {
-      showSlide: '',
+      showSlide: '', //控制动画效果
+      product:{}, //商品信息
       swiperOption: {
         autoplay: true,
         slidesPerView: 3,
@@ -94,6 +95,28 @@ export default {
         }
       }
     };
+  },
+  mounted(){
+    this.getProductInfo();
+  },
+  methods:{
+    getProductInfo(){
+      let id = this.$route.params.id;
+      this.axios.get(`/products/${id}`)
+      .then(res => {
+        this.product = res;
+      })
+    },
+    buy(){
+      let id = this.$route.params.id;
+      this.$router.push(`/detail/${id}`);
+    },
+    closeVideo(){
+      this.showSlide='slideUp';
+      setTimeout(()=>{
+        this.showSlide='';
+      }, 600);
+    }
   }
 };
 </script>

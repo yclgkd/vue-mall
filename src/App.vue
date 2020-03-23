@@ -1,3 +1,10 @@
+<!--
+ * @Author: Chunlai
+ * @Email: chunlai0928@foxmail.com
+ * @Date: 2020-03-10 00:27:02
+ * @LastEditors: Chunlai
+ * @LastEditTime: 2020-03-23 16:50:39
+ -->
 <template>
   <div id="app">
     <router-view></router-view>
@@ -16,12 +23,12 @@ export default {
   },
   methods: {
     getUser() {
-      this.axios.get("/user").then(res => {
+      this.axios.get("/user").then((res={}) => {
         this.$store.dispatch("saveUserName", res.username);
       });
     },
     getCart() {
-      this.axios.get("/carts/products/sum").then(res => {
+      this.axios.get("/carts/products/sum").then((res=0) => {
         this.$store.dispatch("saveCartCount", res);
       });
     }
