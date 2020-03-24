@@ -18,8 +18,9 @@ export default {
     return {};
   },
   mounted() {
+    if(this.$cookie.get('userId'))
     this.getUser();
-    this.getCart();
+    this.getCartCount();
   },
   methods: {
     getUser() {
@@ -27,7 +28,7 @@ export default {
         this.$store.dispatch("saveUserName", res.username);
       });
     },
-    getCart() {
+    getCartCount() {
       this.axios.get("/carts/products/sum").then((res=0) => {
         this.$store.dispatch("saveCartCount", res);
       });
