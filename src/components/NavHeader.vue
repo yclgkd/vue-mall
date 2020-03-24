@@ -149,11 +149,11 @@ export default {
     }
   },
   mounted() {
+    this.getProductList();
     let params = this.$route.params.from;
-    if (params && params == 'login') {
-      this.getProductList();
+    if (params && params == "login") {
+      this.getCartCount();
     }
-    this.getCartCount();
   },
   methods: {
     login() {
