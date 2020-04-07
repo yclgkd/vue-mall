@@ -46,7 +46,7 @@ export default {
       type: String,
       default: "确定"
     },
-    canceText: {
+    cancelText: {
       type: String,
       default: "取消"
     },
