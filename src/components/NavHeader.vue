@@ -3,7 +3,7 @@
  * @Email: chunlai0928@foxmail.com
  * @Date: 2020-03-11 15:38:42
  * @LastEditors: Chunlai
- * @LastEditTime: 2020-03-15 15:15:08
+ * @LastEditTime: 2020-04-08 12:25:13
  -->
 <template>
   <div class="header">
@@ -19,7 +19,7 @@
           <a href="javascript:;" v-if="username">{{username}}</a>
           <a href="javascript:;" v-if="!username" @click="login">登陆</a>
           <a href="javascript:;" v-if="username" @click="signout">退出</a>
-          <a href="javascript:;" v-if="username">我的订单</a>
+          <a href="/#/order/list" v-if="username">我的订单</a>
           <a href="javascript:;" class="my-cart" @click="goToCart">
             <span class="icon-cart"></span>
             购物车({{cartCount}})
